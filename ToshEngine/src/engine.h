@@ -1,6 +1,8 @@
 #pragma once
 
+#include "math/vector.h"
+
 namespace Tosh
 {
-	void Hello();
+	__declspec(dllexport) void Hello();
 }

@@ -6,6 +6,6 @@ namespace Tosh
 {
 	void Hello()
 	{
-		std::cout << "Welcome to Tosh Engine" << std::endl;
+		std::cout << "Welcome to Tosh Engine!!!" << std::endl;
 	}
 }
