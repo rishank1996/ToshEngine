@@ -1,7 +1,7 @@
 #pragma once
 #include "core.h"
 #include <array>
-#include <gtest/gtest.h>
+#include <iostream>
 
 namespace Tosh {
 
@@ -158,6 +158,33 @@ public:
 		return *this - project(other);
 	}
 
+	// Check if the vector is zero
+	bool isZero() const {
+		for (size_t i = 0; i < dim; i++) {
+			if (data[i] != 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// Set the vector to zero
+	void zero() {
+		for (size_t i = 0; i < dim; i++) {
+			data[i] = 0;
+		}
+	}
+
+	// is parallel to another vector
+	bool isParallel(const Vector<T, dim>& other) const {
+		return cross(other).magnitude() == 0;
+	}
+
+	// is perpendicular to another vector
+	bool isPerpendicular(const Vector<T, dim>& other) const {
+		return dot(other) == 0;
+	}
+
 	// Accessors
 	T& operator[](size_t index) {
 		return data[index];
@@ -270,5 +297,8 @@ typedef Vector<float, DIM2> Vec2f;
 typedef Vector<float, DIM3> Vec3f;
 typedef Vector<double, DIM2> Vec2d;
 typedef Vector<double, DIM3> Vec3d;
+
+Vec3f vectorTrippleProduct(Vec3f a, Vec3f b, Vec3f c);
+Vec3d vectorTrippleProduct(Vec3d a, Vec3d b, Vec3d c);
 
 } // namespace Tosh
