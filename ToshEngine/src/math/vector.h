@@ -5,9 +5,6 @@
 
 namespace Tosh {
 
-#define DIM2 2
-#define DIM3 3
-
 template <class T, size_t dim = DIM3>
 class Vector {
 private:

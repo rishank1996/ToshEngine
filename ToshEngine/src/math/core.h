@@ -5,6 +5,9 @@ namespace Tosh
 #define EPS 1e-6
 #define PI 3.14159265358979323846
 
+#define DIM2 2
+#define DIM3 3
+
 #define DEG2RAD(x) ((x) * PI / 180.0)
 #define RAD2DEG(x) ((x) * 180.0 / PI)
 
