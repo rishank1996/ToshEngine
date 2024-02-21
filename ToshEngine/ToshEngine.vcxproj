@@ -90,10 +90,13 @@
   <ItemGroup>
     <ClInclude Include="src\math\core.h" />
     <ClInclude Include="src\engine.h" />
+    <ClInclude Include="src\math\line.h" />
+    <ClInclude Include="src\math\point.h" />
     <ClInclude Include="src\math\vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\engine.cpp" />
+    <ClCompile Include="src\math\point.cpp" />
     <ClCompile Include="src\math\vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

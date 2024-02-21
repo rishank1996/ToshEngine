@@ -24,12 +24,21 @@
     <ClInclude Include="src\math\core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\math\point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\math\vector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\math\point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
