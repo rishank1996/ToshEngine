@@ -27,7 +27,7 @@
     <ClInclude Include="src\math\point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\math\line.h">
+    <ClInclude Include="src\math\line_segment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -90,7 +90,7 @@
   <ItemGroup>
     <ClInclude Include="src\math\core.h" />
     <ClInclude Include="src\engine.h" />
-    <ClInclude Include="src\math\line.h" />
+    <ClInclude Include="src\math\line_segment.h" />
     <ClInclude Include="src\math\point.h" />
     <ClInclude Include="src\math\vector.h" />
   </ItemGroup>

@@ -9,32 +9,32 @@ namespace Tosh
 	class Point;
 	class Vector;
 
-	// Template class for representing a line in n-dimensional space
+	// Template class for representing a LineSegment in n-dimensional space
 	template <class T, size_t dim = DIM3>
-	class Line
+	class LineSegment
 	{
 	private:
-		Point<T,dim> _start; // The starting point of the line
-		Point<T, dim> _end; // The ending point of the line
+		Point<T,dim> _start; // The starting point of the LineSegment
+		Point<T, dim> _end; // The ending point of the LineSegment
 
 	public:
 		// Default constructor
-		Line() = default;
+		LineSegment() = default;
 
 		// Constructor with start and end points
-		Line(const Point<T, dim>& start, const Point<T, dim>& end) : _start(start), _end(end) {}
+		LineSegment(const Point<T, dim>& start, const Point<T, dim>& end) : _start(start), _end(end) {}
 
 		// Copy constructor
-		Line(const Line<T, dim>& other) : _start(other._start), _end(other._end) {}
+		LineSegment(const LineSegment<T, dim>& other) : _start(other._start), _end(other._end) {}
 
 		// Move constructor
-		Line(Line<T, dim>&& other) noexcept : _start(std::move(other._start)), _end(std::move(other._end)) {}
+		LineSegment(LineSegment<T, dim>&& other) noexcept : _start(std::move(other._start)), _end(std::move(other._end)) {}
 
 		// Destructor
-		~Line() = default;
+		~LineSegment() = default;
 
 		// Copy assignment operator
-		Line<T, dim>& operator=(const Line<T, dim>& other)
+		LineSegment<T, dim>& operator=(const LineSegment<T, dim>& other)
 		{
 			_start = other._start;
 			_end = other._end;
@@ -42,20 +42,20 @@ namespace Tosh
 		}
 
 		// Move assignment operator
-		Line<T, dim>& operator=(Line<T, dim>&& other)
+		LineSegment<T, dim>& operator=(LineSegment<T, dim>&& other)
 		{
 			_start = std::move(other._start);
 			_end = std::move(other._end);
 			return *this;
 		}
 
-		// Get the starting point of the line
+		// Get the starting point of the LineSegment
 		Point<T, dim> start() const { return _start; }
 
-		// Get the ending point of the line
+		// Get the ending point of the LineSegment
 		Point<T, dim> end() const { return _end; }
 
-		// Calculate the length of the line
+		// Calculate the length of the LineSegment
 		T length() const
 		{
 			T result = 0;
@@ -66,7 +66,7 @@ namespace Tosh
 			return sqrt(result);
 		}
 
-		// Calculate the squared length of the line
+		// Calculate the squared length of the LineSegment
 		T lengthSquared() const
 		{
 			T result = 0;
@@ -77,7 +77,7 @@ namespace Tosh
 			return result;
 		}
 
-		// Linearly interpolate between the start and end points of the line
+		// LineSegmentarly interpolate between the start and end points of the LineSegment
 		Point<T, dim> lerp(T t) const
 		{
 			Point<T, dim> result;
@@ -88,7 +88,7 @@ namespace Tosh
 			return result;
 		}
 
-		// Get the closest point on the line to a given point
+		// Get the closest point on the LineSegment to a given point
 		Point<T, dim> closestPoint(const Point<T, dim>& point) const
 		{
 			Point<T, dim> result;
@@ -102,36 +102,36 @@ namespace Tosh
 			return lerp(t);
 		}
 
-		// Calculate the distance between the line and a given point
+		// Calculate the distance between the LineSegment and a given point
 		T distance(const Point<T, dim>& point) const
 		{
 			return point.distance(closestPoint(point));
 		}
 
-		// Calculate the squared distance between the line and a given point
+		// Calculate the squared distance between the LineSegment and a given point
 		T distanceSquared(const Point<T, dim>& point) const
 		{
 			return point.distanceSquared(closestPoint(point));
 		}
 
-		// Check if two lines are parallel
-		bool isParallel(const Line<T, dim>& other) const
+		// Check if two LineSegments are parallel
+		bool isParallel(const LineSegment<T, dim>& other) const
 		{
 			Vector<T, dim> dir1 = _end - _start;
 			Vector<T, dim> dir2 = other._end - other._start;
 			return dir1.cross(dir2).magnitude() < EPS;
 		}
 
-		// Check if two lines are perpendicular
-		bool isPerpendicular(const Line<T, dim>& other) const
+		// Check if two LineSegments are perpendicular
+		bool isPerpendicular(const LineSegment<T, dim>& other) const
 		{
 			Vector<T, dim> dir1 = _end - _start;
 			Vector<T, dim> dir2 = other._end - other._start;
 			return dir1.dot(dir2) < EPS;
 		}
 
-		// Check if two lines are intersecting
-		bool isIntersecting(const Line<T, dim>& other) const
+		// Check if two LineSegments are intersecting
+		bool isIntersecting(const LineSegment<T, dim>& other) const
 		{
 			Vector<T, dim> dir1 = _end - _start;
 			Vector<T, dim> dir2 = other._end - other._start;
@@ -142,8 +142,8 @@ namespace Tosh
 			return a < EPS && b < EPS && c < EPS;
 		}
 
-		// Check if two lines are intersecting and get the intersection point
-		bool isIntersecting(const Line<T, dim>& other, Point<T, dim>& intersection) const
+		// Check if two LineSegments are intersecting and get the intersection point
+		bool isIntersecting(const LineSegment<T, dim>& other, Point<T, dim>& intersection) const
 		{
 			Vector<T, dim> dir1 = _end - _start;
 			Vector<T, dim> dir2 = other._end - other._start;
@@ -160,8 +160,8 @@ namespace Tosh
 			return false;
 		}
 
-		// Check if two lines are intersecting and get the intersection parameter
-		bool isIntersecting(const Line<T, dim>& other, T& t) const
+		// Check if two LineSegments are intersecting and get the intersection parameter
+		bool isIntersecting(const LineSegment<T, dim>& other, T& t) const
 		{
 			Vector<T, dim> dir1 = _end - _start;
 			Vector<T, dim> dir2 = other._end - other._start;
@@ -177,8 +177,8 @@ namespace Tosh
 			return false;
 		}
 
-		// Check if two lines are intersecting and get the intersection point and parameter
-		bool isIntersecting(const Line<T, dim>& other, Point<T, dim>& intersection, T& t) const
+		// Check if two LineSegments are intersecting and get the intersection point and parameter
+		bool isIntersecting(const LineSegment<T, dim>& other, Point<T, dim>& intersection, T& t) const
 		{
 			Vector<T, dim> dir1 = _end - _start;
 			Vector<T, dim> dir2 = other._end - other._start;
@@ -195,49 +195,55 @@ namespace Tosh
 			return false;
 		}
 
-		// Get the direction vector of the line
+		// Get the direction vector of the LineSegment
 		Vector<T, dim> direction() const
 		{
 			return _end - _start;
 		}
 
-		// Extend the line by a distance
-		Line<T, dim> extend(T distance) const
+		// Extend the LineSegment by a distance
+		LineSegment<T, dim> extend(T distance) const
 		{
 			Vector<T, dim> dir = direction();
 			dir.normalize();
 			dir *= distance;
-			return Line<T, dim>(_start - dir, _end + dir);
+			return LineSegment<T, dim>(_start - dir, _end + dir);
 		}
 
-		// Extend the line by a distance from the start
-		Line<T, dim> extendStart(T distance) const
+		// Extend the LineSegment by a distance from the start
+		LineSegment<T, dim> extendStart(T distance) const
 		{
 			Vector<T, dim> dir = direction();
 			dir.normalize();
 			dir *= distance;
-			return Line<T, dim>(_start - dir, _end);
+			return LineSegment<T, dim>(_start - dir, _end);
 		}
 
-		// Extend the line by a distance from the end
-		Line<T, dim> extendEnd(T distance) const
+		// Extend the LineSegment by a distance from the end
+		LineSegment<T, dim> extendEnd(T distance) const
 		{
 			Vector<T, dim> dir = direction();
 			dir.normalize();
 			dir *= distance;
-			return Line<T, dim>(_start, _end + dir);
+			return LineSegment<T, dim>(_start, _end + dir);
 		}
 
-		// Check if two lines are equal
-		bool operator==(const Line<T, dim>& other) const
+		// Check if two LineSegments are equal
+		bool operator==(const LineSegment<T, dim>& other) const
 		{
 			return _start == other._start && _end == other._end;
 		}
 
-		// Check if two lines are not equal
-		bool operator!=(const Line<T, dim>& other) const
+		// Check if two LineSegments are not equal
+		bool operator!=(const LineSegment<T, dim>& other) const
 		{
 			return _start != other._start || _end != other._end;
 		}
 	};
+
+	// usefull typedefs
+	typedef LineSegment<float, DIM2> LineSegment2f;
+	typedef LineSegment<float, DIM3> LineSegment3f;
+	typedef LineSegment<double, DIM2> LineSegment2d;
+	typedef LineSegment<double, DIM3> LineSegment3d;
 }
