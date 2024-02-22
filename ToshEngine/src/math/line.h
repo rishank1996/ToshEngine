@@ -2,7 +2,6 @@
 
 #include "core.h"
 #include "vector.h"
-#include "point.h"
 
 namespace Tosh
 {
@@ -12,7 +11,7 @@ namespace Tosh
 	{
 	private:
 		// the point on the line
-		Point<T,dim> m_point;
+		Vector<T,dim> m_point;
 
 		// the direction of the line
 		Vector<T,dim> m_direction;
@@ -21,10 +20,10 @@ namespace Tosh
 		Line() : m_point(), m_direction() {}
 
 		// constructor taking two points
-		Line(const Point<T,dim>& p1, const Point<T,dim>& p2) : m_point(p1), m_direction(p2 - p1) {}
+		Line(const Vector<T,dim>& p1, const Vector<T,dim>& p2) : m_point(p1), m_direction(p2 - p1) {}
 
 		// constructor taking a point and a vector
-		Line(const Point<T,dim>& point, const Vector<T,dim>& direction) : m_point(point), m_direction(direction) {}
+		Line(const Vector<T,dim>& point, const Vector<T,dim>& direction) : m_point(point), m_direction(direction) {}
 
 		// copy constructor
 		Line(const Line<T, dim>& line) : m_point(line.m_point), m_direction(line.m_direction) {}
@@ -52,7 +51,7 @@ namespace Tosh
 		}
 
 		// get the point
-		const Point<T, dim>& getPoint() const { return m_point; }
+		const Vector<T, dim>& getPoint() const { return m_point; }
 
 		// get the direction
 		const Vector<T, dim>& getDirection() const { return m_direction; }
@@ -64,7 +63,7 @@ namespace Tosh
 		}
 
 		// get the closest point on the line to a given point
-		Point<T, dim> closestPoint(const Point<T, dim>& point) const
+		Vector<T, dim> closestPoint(const Vector<T, dim>& point) const
 		{
 			Vector<T, dim> v = point - m_point;
 			T t = v.dot(m_direction) / m_direction.lengthSquared();
@@ -72,7 +71,7 @@ namespace Tosh
 		}
 
 		// get the distance from the line to a given point
-		T distance(const Point<T, dim>& point) const
+		T distance(const Vector<T, dim>& point) const
 		{
 			return (point - closestPoint(point).distance();
 		}
