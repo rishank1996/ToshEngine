@@ -30,6 +30,9 @@
     <ClInclude Include="src\math\line_segment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\math\line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\engine.cpp">
